@@ -5,6 +5,8 @@
 
 def sub_string (string, dictionary)
     og_string = string
+    og_array = og_string.split("")
+    p og_array
 
     new_dict = dictionary.select{|subs| og_string.include? subs}
 
@@ -14,6 +16,6 @@ end
 
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
-sub_string("below", dictionary)
+sub_string("below it howdy", dictionary)
 
     
