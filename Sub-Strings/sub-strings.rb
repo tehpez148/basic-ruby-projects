@@ -6,5 +6,14 @@
 def sub_string (string, dictionary)
     og_string = string
 
-    dictionary.map{|subs| og_string.include? subs}
+    new_dict = dictionary.select{|subs| og_string.include? subs}
+
+    p new_dict
+
+end
+
+dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+
+sub_string("below", dictionary)
+
     
