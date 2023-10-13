@@ -5,8 +5,7 @@
 
 def sub_string (string, dictionary)
     og_string = string.downcase
-    og_array = og_string.split(" ")
-    p og_array
+
 
     new_hash = {}
 
@@ -21,7 +20,6 @@ def sub_string (string, dictionary)
 
 
 
-    ##dictionary.select{|subs| og_string.include? subs}
 
 
 
@@ -38,6 +36,6 @@ end
 
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
-sub_string("below low", dictionary)
+sub_string("Howdy partner, sit down! How's it going?", dictionary)
 
     
