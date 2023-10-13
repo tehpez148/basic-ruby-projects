@@ -6,16 +6,19 @@
 def bubble_sort(array)
     p array
     bubble = array
+    sorted_yet = true
+    while sorted_yet do
+        c = 0
+        sorted_yet = false
 
-    c = 0
-
-    while c < (bubble.length - 1)
-        if bubble[c] > bubble[c + 1]
-            bubble[c], bubble[c + 1 ] = bubble[c + 1], bubble [c]
+        while c < (bubble.length - 1)
+            if bubble[c] > bubble[c + 1]
+                bubble[c], bubble[c + 1 ] = bubble[c + 1], bubble [c]
+                sorted_yet = true
+            end
+            c+=1         
         end
-        c+=1         
     end
-
     bubble
 end
 
