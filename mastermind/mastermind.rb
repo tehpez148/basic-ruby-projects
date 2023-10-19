@@ -8,11 +8,11 @@ class Mastermind
     end
     
     def difficulty_select(difficulty)
-        if difficulty == easy
+        if difficulty == "easy"
             return 0
-        elsif difficulty == medium 
+        elsif difficulty == "medium" 
             return 1
-        elsif difficulty == hard 
+        elsif difficulty == "hard" 
             return 2
         else 
             puts "That's not what I asked for! Try again..."
@@ -25,7 +25,7 @@ class Mastermind
 
     def random_array()
         rand_array = Array.new
-        i = 4 + difficulty
+        i = 4 + difficulty_select
         while i != 0
             rand_array.append(random_numbers)
             i -= 1
@@ -33,11 +33,15 @@ class Mastermind
         p rand_array
     end
 
+    def play_game
+        random_array()
+    end
+
     
 end
 
 
 new_game = Mastermind.new
-
+new_game.play_game()
 
 
