@@ -46,6 +46,17 @@ class Mastermind
         p @rand_array
         p "You have #{@rand_array.length} numbers to guess, and #{@guess} opportunities to do so."
         p "Work through the numbers one by one, and I'll give you clues if you are close ;)"
+        @rand_array.each_with_index do |num,index|
+            user_guess = gets.chomp
+
+
+    end
+
+    def game_over()
+        if @guess == 0
+            p "You goofed"
+            exit
+        end
     end
  
 end
