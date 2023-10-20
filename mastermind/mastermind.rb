@@ -48,7 +48,7 @@ class Mastermind
         puts "Please select a number between 0-9"
         puts "Work through the numbers one by one, and I'll give you clues if you are close ;)"
         @rand_array.each_with_index do |num,index|
-            puts "You are on number #{index + 1}"
+            puts "You are on number #{index + 1} with #{@guess} guesses to go"
             while user_guess = gets.chomp.to_i
                 if user_guess == 0 || user_guess > 9
                     puts "That's not what I asked for"
@@ -66,7 +66,6 @@ class Mastermind
                     puts "#{guess} chances left"
                     check_game_lost()
                 elsif user_guess == num
-                    check_game_won()
                     puts "You got it! Well done, onto the next number!"
                     break
                 else
@@ -76,9 +75,10 @@ class Mastermind
                     check_game_lost()
                 end
             end
-        end
-            
 
+        end
+        
+        puts "You did it! Hurray! Now go home"
 
     end
 
@@ -88,12 +88,6 @@ class Mastermind
             exit
         end
     end
-
-    def check_game_won()
-        p "this is happening!"
-        
-    end
-
 
  
 end
