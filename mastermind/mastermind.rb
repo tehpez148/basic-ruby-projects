@@ -1,12 +1,14 @@
 
 class Mastermind
-  @@number_of_guess = 12
   
-  attr_accessor :difficulty
+  
+  attr_accessor :difficulty, :rand_array, :guess
 
     def initialize()
         puts "Welcome to MasterMind! Select your difficulty (Easy, Medium or Hard)"  
         @difficulty = ""
+        @rand_array = []
+        @guess = 12
     end
     ##method to return an integer based on difficult selected
     def difficulty_select()
@@ -30,19 +32,20 @@ class Mastermind
     def random_numbers
         r = rand(9)
     end
-    ##random array generator, hopefully taking in difficult rating to make longer array 
+    ##random array generator,  taking in difficult rating to make longer array 
     def random_array()
-        rand_array = Array.new
         i = 2 + (@difficulty)
         while i != 0
-            rand_array.append(random_numbers)
+            @rand_array.append(random_numbers)
             i -= 1
         end
-        p rand_array
     end
     ##at the moment just reports random_array
     def play_game
         random_array()
+        p @rand_array
+        p "You have #{@rand_array.length} numbers to guess, and #{@guess} opportunities to do so."
+        p "Work through the numbers one by one, and I'll give you clues if you are close ;)"
     end
  
 end
@@ -50,10 +53,5 @@ end
 ##calls new object
 new_game = Mastermind.new
 new_game.difficulty_select
-
-
-
-
-##new_game.difficulty = gets.chomp.downcase
 
 new_game.play_game
