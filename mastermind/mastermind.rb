@@ -27,7 +27,7 @@ class Mastermind
     ##random array generator, hopefully taking in difficult rating to make longer array 
     def random_array()
         rand_array = Array.new
-        i = 4 + (@difficulty.to_i)
+        i = 4 + (difficulty_select)
         while i != 0
             rand_array.append(random_numbers)
             i -= 1
@@ -45,5 +45,5 @@ end
 new_game = Mastermind.new
 
 new_game.difficulty = gets.chomp.downcase
-
+p new_game.difficulty
 new_game.play_game
