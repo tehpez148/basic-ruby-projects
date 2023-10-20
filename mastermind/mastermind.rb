@@ -40,7 +40,7 @@ class Mastermind
             i -= 1
         end
     end
-    ##at the moment just reports random_array
+    ##plays through a game of mastermind, comparing each element of array with guess. 
     def play_game
         random_array()
         p @rand_array
@@ -50,8 +50,12 @@ class Mastermind
         @rand_array.each_with_index do |num,index|
             puts "You are on number #{index + 1}"
             while user_guess = gets.chomp.to_i
-                p user_guess
-                if user_guess > num
+                if user_guess == 0 || user_guess > 9
+                    puts "That's not what I asked for"
+                    @guess -= 1
+                    puts "#{guess} chances left"
+                    check_game_lost()
+                elsif user_guess > num
                     puts "Too high! Try again"
                     @guess -= 1
                     puts "#{@guess} chances left"
@@ -62,8 +66,8 @@ class Mastermind
                     puts "#{guess} chances left"
                     check_game_lost()
                 elsif user_guess == num
-                    puts "You got it! Well done, onto the next number!"
                     check_game_won()
+                    puts "You got it! Well done, onto the next number!"
                     break
                 else
                     puts "That's not what I asked for"
@@ -86,11 +90,8 @@ class Mastermind
     end
 
     def check_game_won()
-        i = 0
-        i += 1
-        if i == @rand_array.length
-            puts "You won! Hurray! Now get out of here"
-        end
+        p "this is happening!"
+        
     end
 
 
