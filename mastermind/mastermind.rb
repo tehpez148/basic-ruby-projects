@@ -30,7 +30,7 @@ class Mastermind
     end     
     ##random integer generator 
     def random_numbers
-        r = rand(9)
+        r = rand(1..9)
     end
     ##random array generator,  taking in difficult rating to make longer array 
     def random_array()
@@ -44,20 +44,56 @@ class Mastermind
     def play_game
         random_array()
         p @rand_array
-        p "You have #{@rand_array.length} numbers to guess, and #{@guess} opportunities to do so."
-        p "Work through the numbers one by one, and I'll give you clues if you are close ;)"
+        puts "You have #{@rand_array.length} numbers to guess, and #{@guess} opportunities to do so."
+        puts "Please select a number between 0-9"
+        puts "Work through the numbers one by one, and I'll give you clues if you are close ;)"
         @rand_array.each_with_index do |num,index|
-            user_guess = gets.chomp
+            puts "You are on number #{index + 1}"
+            while user_guess = gets.chomp.to_i
+                p user_guess
+                if user_guess > num
+                    puts "Too high! Try again"
+                    @guess -= 1
+                    puts "#{@guess} chances left"
+                    check_game_lost()
+                elsif user_guess < num 
+                    puts "Too low! Try again"
+                    @guess -= 1
+                    puts "#{guess} chances left"
+                    check_game_lost()
+                elsif user_guess == num
+                    puts "You got it! Well done, onto the next number!"
+                    check_game_won()
+                    break
+                else
+                    puts "That's not what I asked for"
+                    @guess -= 1
+                    puts "#{guess} chances left"
+                    check_game_lost()
+                end
+            end
+        end
+            
 
 
     end
 
-    def game_over()
+    def check_game_lost()
         if @guess == 0
-            p "You goofed"
+            puts "You goofed"
             exit
         end
     end
+
+    def check_game_won()
+        i = 0
+        i += 1
+        if i == @rand_array.length
+            puts "You won! Hurray! Now get out of here"
+        end
+    end
+
+
  
 end
 
