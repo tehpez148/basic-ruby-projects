@@ -63,15 +63,15 @@ class Mastermind
                 elsif user_guess < num 
                     puts "Too low! Try again"
                     @guess -= 1
-                    puts "#{guess} chances left"
+                    puts "#{@guess} chances left"
                     check_game_lost()
                 elsif user_guess == num
-                    puts "You got it! Well done, onto the next number!"
+                    puts "You got it! Well done!"
                     break
                 else
                     puts "That's not what I asked for"
                     @guess -= 1
-                    puts "#{guess} chances left"
+                    puts "#{@guess} chances left"
                     check_game_lost()
                 end
             end
@@ -89,11 +89,13 @@ class Mastermind
         end
     end
 
+    ##def play_again
  
 end
 
 ##calls new object
 new_game = Mastermind.new
 new_game.difficulty_select
-
 new_game.play_game
+
+
