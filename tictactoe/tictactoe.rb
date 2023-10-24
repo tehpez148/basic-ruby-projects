@@ -30,7 +30,14 @@ class Game
    ##         puts "#{@player1}'s turn!"
    ##         puts "Select"
 
-
+    def play_game()
+        puts "Pick your next move '#{@player1}"
+        input = gets.chomp.to_i
+        @board.map! {|x| x == input ? 'X': x}
+        p @board
+        display_board()
+    end
+    
 
 end
 
@@ -38,4 +45,4 @@ end
 
 start = Game.new
 start.display_board()
-
+start.play_game()
