@@ -6,6 +6,7 @@
 class Game
     def initialize ()
         @turn = 0
+        @win = 0
         @board = Array.new(10)
         @board = [*1..9]
         @player_one_score = 0
@@ -25,19 +26,51 @@ class Game
         puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
     end
 
-   ## def check_turn()
-   ##     if @turn == 0
-   ##         puts "#{@player1}'s turn!"
-   ##         puts "Select"
+    def free_positions(choice)
+        @board[choice].nil?
+    end
+
+
 
     def play_game()
-        puts "Pick your next move '#{@player1}"
-        input = gets.chomp.to_i
-        @board.map! {|x| x == input ? 'X': x}
-        p @board
-        display_board()
+        ##check_win()
+        take_turn()
     end
     
+    def take_turn()
+        if @turn == 0
+            puts "Pick your next move '#{@player1}"
+            while input = gets.chomp.to_i
+                if free_positions(input)
+                    puts "That's already been taken! Try again"
+                elsif (1..9).include?(input) == false
+                    puts "That's not kosher"
+                else
+                    @board.map! {|x| x == input ? 'X': x}
+                    @turn == 1
+                    display_board()
+                    break
+                end
+            end
+        else @turn == 1
+            puts "Pick your next move '#{@player2}"
+            while input = gets.chomp.to_i
+                if free_positions(input)
+                    puts "That's already been taken! Try again"
+                elsif (1..9).exclude?(input)
+                    puts "That's not kosher"
+                else
+                    @board.map! {|x| x == input ? 'O': x}
+                    @turn == 0
+                    display_board()
+                    break
+                end
+            
+            end
+        end
+    end
+
+
 
 end
 
