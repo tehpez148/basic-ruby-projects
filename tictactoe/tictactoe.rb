@@ -46,14 +46,17 @@ class Game
 
 
     def play_game()
-        ##check_win()
+        
         until @win == 1
+            display_board()
             take_turn()
         end
         puts "Scores are: "
         puts"#{@player1}:#{@player_one_score}"
         puts"#{@player2}:#{@player_two_score}"
     end
+
+
     ##take turn method, cycles through players by change value of @turn variable
     ##changes element in array to X or O as appropriate 
     def take_turn()
@@ -72,6 +75,10 @@ class Game
                 puts "#{@player1} has won!"
                 @player_one_score += 1
             end
+            if check_draw()
+                @win = 1
+                puts "It is a drawer :("
+            end
             @turn = 1
             display_board()
         else @turn == 1
@@ -89,18 +96,45 @@ class Game
                 puts "#{@player2} has won!"
                 @player_two_score += 1
             end
+            if check_draw()
+                @win = 1
+                puts "It is a drawer :("
+            end
             @turn = 0
             display_board()
 
         end
     end
             
-
+    ## loops through win lines every turn to see if one play or another has a winning line
     def check_win(marker)
         LINES.any? do |line|
             line.all? {|position| @board[position - 1] == marker}
         end
     end
+    ##checks whether players wish to play again, then resets certain variables to enable
+    ## a new game
+
+    def play_again?
+        loop do
+            puts "Play again? Y/N?"
+            answer = gets.chomp.downcase
+            if answer == 'n'
+                exit
+            elsif answer == 'y'
+                @turn = 0
+                @win = 0
+                @board = [*1..9]
+                play_game()
+            end
+        end
+    end
+
+    def check_draw()
+        @board.none? {|space| (1..9).include?(space)}
+    end
+
+
 
 
 
@@ -109,5 +143,5 @@ end
 
 
 start = Game.new
-start.display_board()
 start.play_game()
+start.play_again?
