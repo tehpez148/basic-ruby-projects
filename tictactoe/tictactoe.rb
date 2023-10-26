@@ -52,7 +52,7 @@ class Game
         end
         puts "Scores are: "
         puts"#{@player1}:#{@player_one_score}"
-        puts"#{@player2}:#{@player_two_score}
+        puts"#{@player2}:#{@player_two_score}"
     end
     ##take turn method, cycles through players by change value of @turn variable
     ##changes element in array to X or O as appropriate 
@@ -70,7 +70,8 @@ class Game
             if check_win('X')
                 @win = 1
                 puts "#{@player1} has won!"
-                @player_two_score += 1
+                @player_one_score += 1
+            end
             @turn = 1
             display_board()
         else @turn == 1
@@ -87,6 +88,7 @@ class Game
                 @win = 1
                 puts "#{@player2} has won!"
                 @player_two_score += 1
+            end
             @turn = 0
             display_board()
 
@@ -96,7 +98,7 @@ class Game
 
     def check_win(marker)
         LINES.any? do |line|
-            line.all? {|position| @board[position] == marker}
+            line.all? {|position| @board[position - 1] == marker}
         end
     end
 
