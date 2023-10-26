@@ -1,5 +1,4 @@
 ## project to create a game of tic-tac-toe
-## player will be an object that has the ability to place a marker down. 
 
 
 
@@ -26,50 +25,60 @@ class Game
         puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
     end
 
-    def free_positions(choice)
-        @board[choice].nil?
+   
+
+    def check_input(input)
+        if (1..9).include?(input) == false
+            puts "That's not kosher. Try again!"
+        elsif @board[input - 1] == 'X'
+            puts "Input is #{input}"
+            puts "The element as this position is #{@board[input]}"
+            puts "That's already been taken! Try again!"
+        elsif @board[input - 1] == 'O'
+            puts "That's already been taken! Try again!"
+        else
+            return true
+        end
     end
 
 
 
     def play_game()
         ##check_win()
-        take_turn()
+        until @win == 1
+            take_turn()
+        end
     end
     
     def take_turn()
         if @turn == 0
-            puts "Pick your next move '#{@player1}"
-            while input = gets.chomp.to_i
-                if free_positions(input)
-                    puts "That's already been taken! Try again"
-                elsif (1..9).include?(input) == false
-                    puts "That's not kosher"
-                else
-                    @board.map! {|x| x == input ? 'X': x}
-                    @turn == 1
-                    display_board()
+            puts "Pick your next move #{@player1}"
+            input = ''
+            loop do
+                input = gets.chomp.to_i
+                if check_input(input) == true
                     break
                 end
             end
+            @board.map! {|x| x == input ? 'X': x}
+            @turn = 1
+            display_board()
         else @turn == 1
-            puts "Pick your next move '#{@player2}"
-            while input = gets.chomp.to_i
-                if free_positions(input)
-                    puts "That's already been taken! Try again"
-                elsif (1..9).exclude?(input)
-                    puts "That's not kosher"
-                else
-                    @board.map! {|x| x == input ? 'O': x}
-                    @turn == 0
-                    display_board()
+            puts "Pick your next move #{@player2}"
+            input = ''
+            loop do
+                input = gets.chomp.to_i
+                if check_input(input) == true
                     break
                 end
-            
             end
+            @board.map! {|x| x == input ? 'O': x}
+            @turn = 0
+            display_board()
+
         end
     end
-
+            
 
 
 end
