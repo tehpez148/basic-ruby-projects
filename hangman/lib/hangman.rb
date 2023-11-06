@@ -7,7 +7,7 @@ class Hangman
         puts "Welcome to Hangedman!"
         @lives = 10
         @word = ["h","e","l","l","o"]
-        @guess_array = Array.new(length.@word) {"_"}
+        @guess_array = Array.new(@word.length) {"_"}
     end
 
     def compare_input(letter)
@@ -19,14 +19,14 @@ class Hangman
     end
 
     def play_game()
-        puts @guess_array
+        puts @guess_array.join(" ")
         puts "You have #{@lives} lives remaining!"
         puts "Enter your first guess: "
         while @word != @guess_array
             user_guess = gets.chomp.downcase
             if @word.to_set.include?(user_guess)
                 compare_input(user_guess)
-                puts @guess_array
+                puts @guess_array.join(" ")
                 check_won()
             else
                 puts "That's not in there :(. Try again"
@@ -35,12 +35,13 @@ class Hangman
                 puts "You have #{@lives} remaining!"
             end
         end
+    end
 
 
 
     def check_won()
         if @word == @guess_array
-            puts "you did it!"
+            puts "You did it!"
             exit
         end
     end
@@ -52,6 +53,7 @@ class Hangman
         end
     end
 
+end
 
-    game = Hangman.new
-    game.play_game()
+game = Hangman.new
+game.play_game()
