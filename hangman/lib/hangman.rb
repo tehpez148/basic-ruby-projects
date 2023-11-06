@@ -1,12 +1,18 @@
 
 
+def pick_random_line()
+    File.readlines("google-10000-english-no-swears.txt").sample
+end
+
+
 class Hangman 
 
     attr_accessor :lives, :guess_array, :word
     def initialize()
         puts "Welcome to Hangedman!"
         @lives = 10
-        @word = ["h","e","l","l","o"]
+        @word = pick_random_line().chomp.split("")
+        print @word
         @guess_array = Array.new(@word.length) {"_"}
     end
 
