@@ -1,7 +1,11 @@
 
 
 def pick_random_line()
-    File.readlines("google-10000-english-no-swears.txt").sample
+    word = ""
+    while word.length < 5
+        word = File.readlines("google-10000-english-no-swears.txt").sample
+    end
+    return word
 end
 
 
