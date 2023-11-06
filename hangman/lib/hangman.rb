@@ -7,13 +7,13 @@ end
 
 class Hangman 
 
-    attr_accessor :lives, :guess_array, :word
+    attr_accessor :lives, :guess_array, :word, :incorrect
     def initialize()
         puts "Welcome to Hangedman!"
         @lives = 10
         @word = pick_random_line().chomp.split("")
-        print @word
         @guess_array = Array.new(@word.length) {"_"}
+        @incorrect = []
     end
 
     def compare_input(letter)
@@ -36,9 +36,11 @@ class Hangman
                 check_won()
             else
                 puts "That's not in there :(. Try again"
+                @incorrect << user_guess
                 @lives -= 1
                 check_lost()
                 puts "You have #{@lives} remaining!"
+                puts @incorrect.join(",")
             end
         end
     end
